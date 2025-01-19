@@ -365,7 +365,7 @@ def exchange_auth_code(auth_code, client_id, client_secret):
         'code': auth_code
     }
     
-    response = requests.post(f"{AUTH_URL}/oauth2/token", data=data)
+    response = requests.post(f"{API_URL}/oauth2/token", data=data)
     response.raise_for_status()
     
     tokens = response.json()
