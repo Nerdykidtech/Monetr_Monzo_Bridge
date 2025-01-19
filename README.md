@@ -66,12 +66,31 @@ sudo pacman -S python-secretstorage
 
 ## 🚀 Setup
 
-1. **Start the Application**
+### Setting up Monzo Client App
+
+1. **Create a Monzo Client**
+   - Go to [Monzo Developer Portal](https://developers.monzo.com/)
+   - Sign in with your Monzo account
+   - Click "New OAuth Client"
+   - Fill in the following details:
+     ```
+     Name: Monetr Bridge (or any name you prefer)
+     Logo URL: (optional)
+     Redirect URLs: http://localhost:8080/callback
+     Confidentiality: Confidential
+     Description: Bridge to sync Monzo transactions with Monetr
+     ```
+   - After creating, you'll receive:
+     - Client ID (looks like: oauth2client_...)
+     - Client Secret
+   - ⚠️ Save these credentials securely - you'll need them later!
+
+2. **Start the Application**
    ```bash
    python Monzo_Bridge
    ```
 
-2. **Configure Monetr**
+3. **Configure Monetr**
    - Enter your Monetr instance URL
    - Provide your login credentials
    - Copy your Bank Account ID from the Monetr transactions URL
@@ -79,12 +98,15 @@ sudo pacman -S python-secretstorage
      http://localhost:4000/bank/bac_XXXXXXXXXXXXXXXXXX/transactions
      ```
 
-3. **Configure Monzo**
-   - Enter your Monzo Client ID and Secret
-   - Complete the OAuth authorization in your browser
-   - Approve the connection in your Monzo app
+4. **Configure Monzo**
+   - Enter the Client ID and Secret from step 1
+   - A browser window will open for Monzo authorization
+   - Log in to your Monzo account if needed
+   - Approve the connection
+   - Check your Monzo app for the authorization request
+   - After approving, you'll be redirected back to the application
 
-4. **Start Monitoring**
+5. **Start Monitoring**
    - The bridge will automatically start monitoring for new transactions
    - New transactions will be instantly synced to Monetr
    - View the status in real-time in your terminal
